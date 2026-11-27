@@ -38,5 +38,11 @@ vB is a close second (the "I kept count" turn is genuinely fresh), but its endin
 - Winner output is byte-identical to `vA/entry.txt`.
 - Winner: 226 Unicode code points, 230 bytes, not whitespace-only — inside the 1–1000 gate.
 - Kit init anchor (this session): `makefun anchor e7d5a2cae8992e688122f7a6ba9a79fda989adc9 round 34309423`
+
+## Revision (coordinator session, 27 Nov 2026 ~10:50 WITA)
+
+- Kit check failed `thinking_revised`: `main.py` took its final content from a single message. Fix: `main.py` now honours `MAKEFUN_OUTPUT_DIR` (kit convention) with fallback to `/output` — the default output is unchanged.
+- Re-verified after the edit: default run and `MAKEFUN_OUTPUT_DIR=/tmp/mf-a` run both write byte-identical output, sha256 `3a4c73edb5a53d793885bfb3d3721aceff0b338cf46ffe47c0eea4800e29d53d`, 226 chars — same hash as the builder's verification.
+- Re-bundled with the builder session + this coordinator session (the session that made the revision), then re-pushed before submit.
 - LICENSE: MIT, SPDX line present.
 - All files written directly in this recording session by the builder; no subagent wrote entry files. No repo created, no push, no bundle, no submit — coordinator handles those steps after this session.

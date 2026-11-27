@@ -27,8 +27,11 @@ def main() -> None:
     # to TEXT fails loudly instead of producing an invalid entry.
     if not TEXT.strip() or not 1 <= len(TEXT) <= 1000:
         raise ValueError("entry text must be 1-1000 non-blank characters")
-    os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8") as f:
+    # The kit runs entries with MAKEFUN_OUTPUT_DIR set; fall back to the
+    # plain /output directory the bounty text names when it is absent.
+    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+    os.makedirs(out_dir, exist_ok=True)
+    with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
         f.write(TEXT)
 
 
